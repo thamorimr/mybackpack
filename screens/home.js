@@ -21,22 +21,31 @@ export default function Home() {
   function renderPost(item){
     return(
       <View style={styles.card}>
-        <Text style={styles.title} numberOfLines={1}>
+        <Text 
+          style={styles.title} 
+          onPress={(item) => selecionarItem(item)}
+          numberOfLines={1}>
           {item.title}
         </Text>
       </View>
     )
   };
 
+  function selecionarItem(a){
+    let valor = a.title;
+    setData();
+    console.log('OIII')
+  };
+
   function search(s){
-      let arr = JSON.parse(JSON.stringify(originalData));
+    let arr = JSON.parse(JSON.stringify(originalData));
+
+    if(s === null || s === undefined || s === ''){
+      setData()
+    }
+    else{
       setData(arr.filter((d) => d.title.includes(s)));
-      // if(s === null || s == undefined || s == ''){
-      //   setData();
-      // }
-      // else{
-      //   setData(arr.filter((d) => d.title.includes(s)));
-      // }
+    }
   };
 
 
