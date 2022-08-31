@@ -23,7 +23,7 @@ export default function Home() {
       <View style={styles.card}>
         <Text 
           style={styles.title} 
-          onPress={(item) => selecionarItem(item)}
+          onPress={() => selecionarItem(item.title)}
           numberOfLines={1}>
           {item.title}
         </Text>
@@ -32,9 +32,8 @@ export default function Home() {
   };
 
   function selecionarItem(a){
-    let valor = a.title;
+    console.log(a);
     setData();
-    console.log('OIII')
   };
 
   function search(s){
