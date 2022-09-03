@@ -50,27 +50,27 @@ export default function Home() {
 
   return (
     <View style={styles.container}>
-    <ImageBackground  
-      source={require('../assets/background/busca_local.png')} 
-      style={styles.image}>
+      <ImageBackground  
+        source={require('../assets/background/busca_local.png')} 
+        style={styles.image}>
 
-    <Image 
-      style={styles.logo}
-      source={require('../assets/logo.png')} />
+        <Image 
+          style={styles.logo}
+          source={require('../assets/logo.png')} />
 
-    
-    <TextInput
-      style={styles.input} 
-      placeholder='Buscar Local' 
-      onChangeText={(s) => search(s)}/>
+        
+        <TextInput
+          style={styles.input} 
+          placeholder='Buscar Local' 
+          onChangeText={(s) => search(s)}/>
 
-    <FlatList
-      data={data}
-      keyExtractor={(item) => String(item.id)}
-      renderItem={({item}) => renderPost(item)}
-    />
+        <FlatList
+          data={data}
+          keyExtractor={(item) => String(item.id)}
+          renderItem={({item}) => renderPost(item)}
+        />
 
-    </ImageBackground>
+      </ImageBackground>
     </View>
 
   );

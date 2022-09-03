@@ -2,17 +2,20 @@ import React from 'react'
 import { NavigationContainer } from '@react-navigation/native' 
 import { createStackNavigator } from '@react-navigation/stack'
 import Home from '../screens/home'
-import ReviewDetails from '../screens/reviewDetails'
+import Rotas from '../screens/rotas'
+import DetalhesRota from '../screens/detalhesRota'
+import Restaurantes from '../screens/restaurantes'
 
 const Stack = createStackNavigator()
 
 export default function Navigator() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='Home' >
-      <Stack.Screen name='Home' component={Home} />
-
-      <Stack.Screen name='ReviewDetails' component={ReviewDetails} />
+      <Stack.Navigator initialRouteName='Restaurantes' >
+      {/* <Stack.Screen name='Home' component={Home} /> */}
+      {/* <Stack.Screen name='Rotas' component={Rotas} /> */}
+      {/* <Stack.Screen name='DetalhesRota' component={DetalhesRota} /> */}
+      <Stack.Screen name='Restaurantes' component={Restaurantes} />
 
       </Stack.Navigator>
     </NavigationContainer>
