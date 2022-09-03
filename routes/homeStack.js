@@ -5,17 +5,19 @@ import Home from '../screens/home'
 import Rotas from '../screens/rotas'
 import DetalhesRota from '../screens/detalhesRota'
 import Restaurantes from '../screens/restaurantes'
+import Atracoes from '../screens/atracoes'
 
 const Stack = createStackNavigator()
 
 export default function Navigator() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='Restaurantes' >
+      <Stack.Navigator initialRouteName='Atracoes' >
       {/* <Stack.Screen name='Home' component={Home} /> */}
       {/* <Stack.Screen name='Rotas' component={Rotas} /> */}
       {/* <Stack.Screen name='DetalhesRota' component={DetalhesRota} /> */}
-      <Stack.Screen name='Restaurantes' component={Restaurantes} />
+      {/* <Stack.Screen name='Restaurantes' component={Restaurantes} /> */}
+      <Stack.Screen name='Atracoes' component={Atracoes} />
 
       </Stack.Navigator>
     </NavigationContainer>
