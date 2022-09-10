@@ -3,10 +3,14 @@ import { ImageBackground,StyleSheet, View, Text, Image, FlatList} from 'react-na
 import { TextInput } from 'react-native-gesture-handler';
 
 
-export default function Home() {
+export default function Home({ navigation }) {
 
   const [data, setData] = useState([]);
   const [originalData, setOriginalData] = useState([]);
+
+  const pressHandler = () => {
+    navigation.navigate('Rotas');
+  }
 
 
   useEffect(() => {
@@ -23,7 +27,7 @@ export default function Home() {
       <View style={styles.card}>
         <Text 
           style={styles.title} 
-          onPress={() => selecionarItem(item.title)}
+          onPress={pressHandler}
           numberOfLines={1}>
           {item.title}
         </Text>

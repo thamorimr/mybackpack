@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { ImageBackground,StyleSheet, View, Text, Image, FlatList} from 'react-native';
+import { TouchableOpacity } from "react-native";
 
-export default function DetalhesRota() {
+
+export default function DetalhesRota({ navigation }) {
 
   const opcoes=[
     {
@@ -22,12 +24,23 @@ export default function DetalhesRota() {
     }
 ];
 
+const pressHandler = (opcao) => {
+  if(opcao == '01'){
+    navigation.navigate('Atracoes');
+  };
+  if(opcao == '02'){
+    navigation.navigate('Restaurantes');
+  }
+}
+
 function renderPost(item){
 return(
   <View style={styles.card}>
-    <Text style={styles.title}>
-      {item.desc}
-    </Text>
+    <TouchableOpacity onPress={() => pressHandler(item.id)}>
+      <Text style={styles.title}>
+        {item.desc}
+      </Text>
+    </TouchableOpacity>
   </View>
 )
 };

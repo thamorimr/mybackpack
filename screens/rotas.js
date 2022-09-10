@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { ImageBackground,StyleSheet, View, Text, Image, FlatList} from 'react-native';
 // import {rotas} from '../data/rotas'
+import { TouchableOpacity } from "react-native";
 
-export default function Rotas() {
+
+export default function Rotas({ navigation }) {
 
   const rotas=[
     {
@@ -22,15 +24,21 @@ export default function Rotas() {
     }
 ];
 
+const pressHandler = () => {
+  navigation.navigate('DetalhesRota');
+}
+
 function renderPost(item){
 return(
   <View style={styles.card}>
-    <Text style={styles.title}>
-      {item.desc}
-    </Text>
-    <Text style={styles.titleDistance}>
-      Distancia{'\n'}{item.distance} KM
-    </Text>
+    <TouchableOpacity onPress={pressHandler}>
+      <Text style={styles.title}>
+        {item.desc}
+      </Text>
+      <Text style={styles.titleDistance}>
+        Distancia{'\n'}{item.distance} KM
+      </Text>
+    </TouchableOpacity>
   </View>
 )
 };
