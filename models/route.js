@@ -11,12 +11,13 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Route.belongsTo(models.Citie)
+      // define association here
     }
   }
   Route.init({
     DescRoute: DataTypes.STRING,
     Distance: DataTypes.STRING,
-    citiesId: DataTypes.INTEGER
+    citieId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Route',

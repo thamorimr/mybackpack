@@ -14,7 +14,7 @@ export default function Home({ navigation }) {
 
 
   useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/posts')
+    fetch('http://192.168.1.14:3000/cities')
     .then((response) => response.json())
     .then((json) => {
       setData(json);
@@ -29,7 +29,7 @@ export default function Home({ navigation }) {
           style={styles.title} 
           onPress={pressHandler}
           numberOfLines={1}>
-          {item.title}
+          {item.City} - {item.Country}
         </Text>
       </View>
     )
@@ -47,7 +47,7 @@ export default function Home({ navigation }) {
       setData()
     }
     else{
-      setData(arr.filter((d) => d.title.includes(s)));
+      setData(arr.filter((d) => d.City.includes(s)));
     }
   };
 
@@ -104,7 +104,9 @@ const styles = StyleSheet.create({
     padding: 10,
     borderWidth: 1,
     marginHorizontal: 20,
-    backgroundColor: 'white'
+    backgroundColor: 'white',
+    borderRadius: 15,
+    backgroundColor: '#ECEBEB'
   },
   title:{
     fontSize: 15,

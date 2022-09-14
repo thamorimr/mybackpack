@@ -14,11 +14,11 @@ module.exports = {
       Distance: {
         type: Sequelize.STRING
       },
-      citiesId: {
+      citieId: {
         type: Sequelize.INTEGER,
-        references: {
-          model:'cities',
-          key: 'id'
+        references:{
+          model: 'Cities',
+          key:'id'
         },
         onUpdate:'cascade',
         onDelete:'cascade'
