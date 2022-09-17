@@ -1,20 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { ImageBackground,StyleSheet, View, Text, Image, FlatList} from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
+import { useNavigation } from '@react-navigation/native';
 
 
-export default function Home({ navigation }) {
+export default function Home() {
 
   const [data, setData] = useState([]);
   const [originalData, setOriginalData] = useState([]);
+  const navigation = useNavigation();
 
-  const pressHandler = () => {
-    navigation.navigate('Rotas');
+  const pressHandler = (id) => {
+    navigation.navigate('Rotas', {citieId: id});
   }
 
 
   useEffect(() => {
-    fetch('http://192.168.1.14:3000/cities')
+    fetch('http://192.168.1.7:3000/cities')
     .then((response) => response.json())
     .then((json) => {
       setData(json);
@@ -27,9 +29,9 @@ export default function Home({ navigation }) {
       <View style={styles.card}>
         <Text 
           style={styles.title} 
-          onPress={pressHandler}
+          onPress={() => pressHandler(item.id)}
           numberOfLines={1}>
-          {item.City} - {item.Country}
+          {item.id} - {item.City} - {item.Country}
         </Text>
       </View>
     )

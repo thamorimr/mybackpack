@@ -12,13 +12,16 @@ const Stack = createStackNavigator()
 export default function Navigator() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='DetalhesRota' >
-      <Stack.Screen name='Home' component={Home} />
+      <Stack.Navigator initialRouteName='Home' >
+      <Stack.Screen name='Home' component={Home} 
+        options={{
+          headerShown: false
+        }}
+      />
       <Stack.Screen name='Rotas' component={Rotas} />
       <Stack.Screen name='DetalhesRota' component={DetalhesRota} />
       <Stack.Screen name='Restaurantes' component={Restaurantes} />
       <Stack.Screen name='Atracoes' component={Atracoes} />
-
       </Stack.Navigator>
     </NavigationContainer>
   );

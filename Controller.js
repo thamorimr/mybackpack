@@ -8,6 +8,10 @@ app.use(cors());
 app.use(bodyParser.urlencoded({extended: false}));
 const cities = models.Citie;
 const routes = models.Route;
+const attraction_routes = models.Attraction_route;
+const Attraction = models.Attraction;
+const dangerousplace_routes = models.Dangerousplace_route;
+const dangerousplace = models.Dangerousplace;
 
 app.get('/', async(req,res)=>{
     res.json({title: 'Hello World'})
@@ -33,6 +37,16 @@ app.get('/routes/:citieid', async(req,res)=>{
     });
     res.json(response)
 });
+
+app.get('/attraction/:routeid', async(req,res)=>{
+    let response = await attraction_routes.findAll({
+        where:{routeid: req.params.routeid}
+    });
+    res.json(response)
+});
+
+
+
 
 let port=process.env.PORT || 3000;
 app.listen(port,(req,res)=>{

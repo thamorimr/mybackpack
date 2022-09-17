@@ -6,7 +6,7 @@ import { WebView } from 'react-native-webview';
 
 
 
-export default function Atracoes() {
+export default function Atracoes({ route }) {
 
   const [url,setUrl] = useState('');
   const [go,setGo] = useState(false);
@@ -46,6 +46,8 @@ return(
           <ImageBackground  
             source={require('../assets/background/listagem_de_rotas.png')} 
             style={styles.image}>
+
+            <Text>{route.params?.routeId}</Text>              
 
             <FlatList
               data={opcoes}

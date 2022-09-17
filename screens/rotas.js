@@ -1,29 +1,31 @@
 import React, { useEffect, useState } from 'react';
 import { ImageBackground,StyleSheet, View, Text, Image, FlatList} from 'react-native';
 import { TouchableOpacity } from "react-native";
+import { useNavigation } from '@react-navigation/native';
 
 
-export default function Rotas({ navigation }) {
+export default function Rotas({ route }) {
 
   const [data, setData] = useState([]);
+  const navigation = useNavigation();
   
 
   useEffect(() => {
-    fetch('http://192.168.1.14:3000/routes/'+'2')
+    fetch('http://192.168.1.7:3000/routes/' + route.params?.citieId)
     .then((response) => response.json())
     .then((json) => {
       setData(json);
     });
   },[]);
 
-  const pressHandler = () => {
-    navigation.navigate('DetalhesRota');
+  const pressHandler = (id) => {
+    navigation.navigate('DetalhesRota',{routeId: id});
   }
 
   function renderPost(item){
     return(
       <View style={styles.card}>
-        <TouchableOpacity onPress={pressHandler}>
+        <TouchableOpacity onPress={() => pressHandler(item.id)}>
           <Text style={styles.title}>
             {item.DescRoute}
           </Text>

@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { ImageBackground,StyleSheet, View, Text, Image, FlatList} from 'react-native';
 import { TouchableOpacity } from "react-native";
+import { useNavigation } from '@react-navigation/native';
 
 
-export default function DetalhesRota({ navigation }) {
 
+export default function DetalhesRota({ route }) {
+
+  const navigation = useNavigation();
   const opcoes=[
     {
     id:'01',
@@ -24,9 +27,10 @@ export default function DetalhesRota({ navigation }) {
     }
 ];
 
+
 const pressHandler = (opcao) => {
   if(opcao == '01'){
-    navigation.navigate('Atracoes');
+    navigation.navigate('Atracoes',{routeId: route.params?.routeId});
   };
   if(opcao == '02'){
     navigation.navigate('Restaurantes');
