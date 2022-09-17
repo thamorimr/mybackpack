@@ -3,25 +3,23 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Route extends Model {
+  class DangerousPlace_Route extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Route.belongsTo(models.Citie);
-      Route.hasMany(models.DangerousPlace_Route);
-      Route.hasMany(models.Attraction_Route);
+      DangerousPlace_Route.belongsTo(models.DangerousPlace);
+      DangerousPlace_Route.belongsTo(models.Route);
     }
   }
-  Route.init({
-    DescRoute: DataTypes.STRING,
-    Distance: DataTypes.STRING,
-    citieId: DataTypes.INTEGER
+  DangerousPlace_Route.init({
+    dangerousplaceId: DataTypes.INTEGER,
+    routeId: DataTypes.INTEGER
   }, {
     sequelize,
-    modelName: 'Route',
+    modelName: 'DangerousPlace_Route',
   });
-  return Route;
+  return DangerousPlace_Route;
 };

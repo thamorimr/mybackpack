@@ -12,7 +12,7 @@ const Stack = createStackNavigator()
 export default function Navigator() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='Rotas' >
+      <Stack.Navigator initialRouteName='DetalhesRota' >
       <Stack.Screen name='Home' component={Home} />
       <Stack.Screen name='Rotas' component={Rotas} />
       <Stack.Screen name='DetalhesRota' component={DetalhesRota} />

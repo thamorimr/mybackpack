@@ -9,7 +9,7 @@ export default function Rotas({ navigation }) {
   
 
   useEffect(() => {
-    fetch('http://192.168.1.14:3000/routes')
+    fetch('http://192.168.1.14:3000/routes/'+'2')
     .then((response) => response.json())
     .then((json) => {
       setData(json);

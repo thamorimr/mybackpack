@@ -21,10 +21,17 @@ app.get('/cities', async(req,res)=>{
 });
 
 app.get('/routes', async(req,res)=>{
-    let read = await routes.findAll({
+    let response = await routes.findAll({
         raw:true
     });
-    res.json(read)
+    res.json(response)
+});
+
+app.get('/routes/:citieid', async(req,res)=>{
+    let response = await routes.findAll({
+        where:{citieId: req.params.citieid}
+    });
+    res.json(response)
 });
 
 let port=process.env.PORT || 3000;
