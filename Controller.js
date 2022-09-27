@@ -8,7 +8,7 @@ app.use(cors());
 app.use(bodyParser.urlencoded({extended: false}));
 const cities = models.Citie;
 const routes = models.Route;
-const attraction_routes = models.Attraction_route;
+const attraction_routes = models.Attraction_Route;
 const Attraction = models.Attraction;
 const dangerousplace_routes = models.Dangerousplace_route;
 const dangerousplace = models.Dangerousplace;
@@ -40,12 +40,26 @@ app.get('/routes/:citieid', async(req,res)=>{
 
 app.get('/attraction/:routeid', async(req,res)=>{
     let response = await attraction_routes.findAll({
-        where:{routeid: req.params.routeid}
+        attributes: ['attractionId'],
+        where:{routeid: req.params.routeid},
+        raw: true,
+        include: [{
+            model: Attraction,
+            required: true,
+            attributes: ['Name','Desc','Address']
+        }],
+        order: [['id', 'ASC']]
     });
     res.json(response)
 });
 
-
+app.get('/attraction/descattraction/:attractionid', async(req,res)=>{
+    let response = await Attraction.findAll({
+        attributes: ['Id','Name','Desc','Address'],
+        where:{id: req.params.attractionid}
+    });
+    res.json(response)
+});
 
 
 let port=process.env.PORT || 3000;

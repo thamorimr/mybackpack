@@ -1,40 +1,33 @@
 import React, { useEffect, useState } from 'react';
 import { ImageBackground,StyleSheet, View, Text, Image, FlatList} from 'react-native';
 import { TouchableOpacity } from "react-native";
-import { Button } from 'react-native-elements';
 import { WebView } from 'react-native-webview';
-
+import { useNavigation } from '@react-navigation/native';
 
 
 export default function Atracoes({ route }) {
 
-  const [url,setUrl] = useState('');
   const [go,setGo] = useState(false);
+  const [data, setData] = useState([]);
+  const navigation = useNavigation();
 
-  const opcoes=[
-    {
-    id:'01',
-    desc:'Mirante Cerro Santa Lúcia'
-    },
-    {
-    id:'02',
-    desc:'Cajon del Maipo'
-    },
-    {
-    id:'03',
-    desc:'Casa de la Moneda'
-    },
-    {
-    id:'04',
-    desc:'Valparaiso e Viña del Mar'
-    }
-];
+  useEffect(() => {
+    fetch('http://192.168.1.7:3000/attraction/' + route.params?.routeId)
+    .then((response) => response.json())
+    .then((json) => {
+      setData(json);
+    });
+  },[]);
+
+  const pressHandlerNew = (id) => {
+    navigation.navigate('CriarAtracao',{routeId: id});
+  };
 
 function renderPost(item){
 return(
   <View style={styles.card}>
     <Text style={styles.title}>
-      {item.desc}
+    {item['Attraction.Name']}
     </Text>
   </View>
 )
@@ -46,19 +39,24 @@ return(
           <ImageBackground  
             source={require('../assets/background/listagem_de_rotas.png')} 
             style={styles.image}>
-
-            <Text>{route.params?.routeId}</Text>              
-
+            
             <FlatList
-              data={opcoes}
-              keyExtractor={(item) => String(item.id)}
+              data={data}
+              keyExtractor={(item) => String(item.attractionId)}
               renderItem={({item}) => renderPost(item)}/>
 
-            <TouchableOpacity onPress={() => setGo(true)}>
+          <TouchableOpacity onPress={() => setGo(true)}>
               <Image
                 style={styles.buttonTripadvisor}
                 resizeMode="contain"
                 source={require('../assets/button_tripadvisor.png')} />
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={() => pressHandlerNew(route.params?.routeId)}>
+            <Image
+              style={styles.buttonPlus}
+              resizeMode="contain"
+              source={require('../assets/button_plus.png')} />
             </TouchableOpacity>
 
         </ImageBackground>
@@ -91,6 +89,12 @@ const styles = StyleSheet.create({
     fontWeight: '600'
   },
   buttonTripadvisor:{
+    height: 80,
+    width: 80,
+    marginLeft: 290,
+    marginBottom: 20
+  },
+  buttonPlus:{
     height: 80,
     width: 80,
     marginLeft: 290,

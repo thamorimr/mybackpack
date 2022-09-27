@@ -18,14 +18,18 @@ export default function Rotas({ route }) {
     });
   },[]);
 
-  const pressHandler = (id) => {
+  const pressHandlerDet = (id) => {
     navigation.navigate('DetalhesRota',{routeId: id});
+  };
+
+  const pressHandlerNew = (id) => {
+    navigation.navigate('CriarRota',{routeId: id});
   }
 
   function renderPost(item){
     return(
       <View style={styles.card}>
-        <TouchableOpacity onPress={() => pressHandler(item.id)}>
+        <TouchableOpacity onPress={() => pressHandlerDet(item.id)}>
           <Text style={styles.title}>
             {item.DescRoute}
           </Text>
@@ -43,10 +47,17 @@ export default function Rotas({ route }) {
         source={require('../assets/background/listagem_de_rotas.png')} 
         style={styles.image}>
       <FlatList
-          data={data}
-          keyExtractor={(item) => String(item.id)}
-          renderItem={({item}) => renderPost(item)}
-        />
+        data={data}
+        keyExtractor={(item) => String(item.id)}
+        renderItem={({item}) => renderPost(item)}
+      />
+
+      <TouchableOpacity onPress={() => pressHandlerNew(route.params?.citieId)}>
+        <Image
+          style={styles.buttonPlus}
+          resizeMode="contain"
+          source={require('../assets/button_plus.png')} />
+      </TouchableOpacity>
 
       </ImageBackground>
     </View>
@@ -74,5 +85,11 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: 'white',
     fontWeight: '600'
+  },
+  buttonPlus:{
+    height: 80,
+    width: 80,
+    marginLeft: 290,
+    marginBottom: 20
   }
 });
