@@ -6,6 +6,7 @@ const models=require('./models')
 const app=express();
 app.use(cors());
 app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
 const cities = models.Citie;
 const routes = models.Route;
 const attraction_routes = models.Attraction_Route;
@@ -59,6 +60,24 @@ app.get('/attraction/descattraction/:attractionid', async(req,res)=>{
         where:{id: req.params.attractionid}
     });
     res.json(response)
+});
+
+
+app.post('/create/attraction', async (req,res)=>{
+    let create = await Attraction.create({
+        Name: req.body.Name,
+        Desc: req.body.Desc,
+        Address: req.body.Address,
+        createdAt: new Date(), 
+        updatedAt: new Date()
+    });
+    res.send(create);
+    
+    let createAtRt = await attraction_routes.create({
+        attractionId: create.id,
+        routeId: req.body.routeId
+    });
+    console.log(createAtRt);
 });
 
 
