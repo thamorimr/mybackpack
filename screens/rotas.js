@@ -19,11 +19,11 @@ export default function Rotas({ route }) {
   },[]);
 
   const pressHandlerDet = (id) => {
-    navigation.navigate('DetalhesRota',{routeId: id});
+    navigation.navigate('DetalhesRota',{routeId: id, city: route.params?.city});
   };
 
   const pressHandlerNew = (id) => {
-    navigation.navigate('CriarRota',{routeId: id});
+    navigation.navigate('CriarRota',{citieId: id, city: route.params?.city});
   }
 
   function renderPost(item){

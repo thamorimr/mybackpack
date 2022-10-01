@@ -10,8 +10,8 @@ export default function Home() {
   const [originalData, setOriginalData] = useState([]);
   const navigation = useNavigation();
 
-  const pressHandler = (id) => {
-    navigation.navigate('Rotas', {citieId: id});
+  const pressHandler = (id,name) => {
+    navigation.navigate('Rotas', {citieId: id, city: name});
   }
 
 
@@ -29,9 +29,9 @@ export default function Home() {
       <View style={styles.card}>
         <Text 
           style={styles.title} 
-          onPress={() => pressHandler(item.id)}
+          onPress={() => pressHandler(item.id,item.City)}
           numberOfLines={1}>
-          {item.id} - {item.City} - {item.Country}
+          {item.City} - {item.Country}
         </Text>
       </View>
     )

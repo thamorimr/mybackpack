@@ -34,7 +34,7 @@ export default function CriarAtracao({ route }) {
       setDisplay('Atração Cadastrada com Sucesso!');
       setTimeout(() => {
         setDisplay('');
-        navigation.navigate('DetalhesRota',{routeId: route.params?.routeId});
+        navigation.navigate('DetalhesRota',{routeId: route.params?.routeId,city: route.params?.city });
       }, 1000)
     }
   }

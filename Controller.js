@@ -77,7 +77,17 @@ app.post('/create/attraction', async (req,res)=>{
         attractionId: create.id,
         routeId: req.body.routeId
     });
-    console.log(createAtRt);
+});
+
+app.post('/create/route', async (req,res)=>{
+    let create = await routes.create({
+        DescRoute: req.body.Desc,
+        Distance: req.body.Distance,
+        citieId: req.body.citieId,
+        createdAt: new Date(), 
+        updatedAt: new Date()
+    });
+    res.send(create);
 });
 
 

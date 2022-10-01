@@ -30,10 +30,13 @@ export default function DetalhesRota({ route }) {
 
 const pressHandler = (opcao) => {
   if(opcao == '01'){
-    navigation.navigate('Atracoes',{routeId: route.params?.routeId});
+    navigation.navigate('Atracoes',{routeId: route.params?.routeId, city: route.params?.city});
   };
   if(opcao == '02'){
-    navigation.navigate('Restaurantes');
+    navigation.navigate('Restaurantes',{city: route.params?.city});
+  };
+  if(opcao == '03'){
+    navigation.navigate('Hospedagens',{city: route.params?.city});
   }
 }
 
@@ -54,7 +57,7 @@ return(
       <ImageBackground  
         source={require('../assets/background/listagem_de_rotas.png')} 
         style={styles.image}>
-
+        
         <Image 
           style={styles.mapa}
           source={require('../assets/mapaMiniatura.png')} />

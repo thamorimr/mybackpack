@@ -66,7 +66,7 @@ return(
   }else {
     return(
         <WebView
-              source={{uri: 'https://www.tripadvisor.com.br/Restaurants-g294305-Santiago_Santiago_Metropolitan_Region.html'}}
+              source={{uri: 'https://www.tripadvisor.com.br/Search?q=Santiago&searchSessionId=F3A78CDF5C913EE1575437F56915FF1E1664446199770ssid&searchNearby=false&sid=7DA5AD53B3B74A6E8C2B9C1911B7334A1664446203509&blockRedirect=true&ssrc=A&rf=1'}}
           />      
     )
   }

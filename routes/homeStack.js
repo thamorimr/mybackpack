@@ -8,6 +8,7 @@ import Restaurantes from '../screens/restaurantes'
 import Atracoes from '../screens/atracoes'
 import CriarRota from '../screens/criarRota'
 import CriarAtracao from '../screens/criarAtracao'
+import Hospedagens from '../screens/hospedagens'
 
 const Stack = createStackNavigator()
 
@@ -21,6 +22,7 @@ export default function Navigator() {
         }}
       />
       <Stack.Screen name='Rotas' component={Rotas} />
+      <Stack.Screen name='Hospedagens' component={Hospedagens} />
       <Stack.Screen name='CriarRota' component={CriarRota} />
       <Stack.Screen name='CriarAtracao' component={CriarAtracao} />
       <Stack.Screen name='DetalhesRota' component={DetalhesRota} />
