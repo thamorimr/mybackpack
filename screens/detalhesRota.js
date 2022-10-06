@@ -37,6 +37,9 @@ const pressHandler = (opcao) => {
   };
   if(opcao == '03'){
     navigation.navigate('Hospedagens',{city: route.params?.city});
+  };
+  if(opcao == '04'){
+    navigation.navigate('LocaisEvitar',{routeId: route.params?.routeId, city: route.params?.city});
   }
 }
 

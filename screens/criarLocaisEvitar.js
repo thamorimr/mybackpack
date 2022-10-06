@@ -5,10 +5,9 @@ import { TextInput } from 'react-native-gesture-handler';
 import { Button } from 'react-native-elements';
 
 
-export default function CriarAtracao({ route }) {
+export default function CriarLocaisEvitar({ route }) {
 
   const [display, setDisplay]=useState('');
-  const [name, setName]=useState(null);
   const [desc, setDesc]=useState(null);
   const [address, setAddress]=useState(null);
   const navigation = useNavigation();
@@ -16,14 +15,13 @@ export default function CriarAtracao({ route }) {
   //Envio do formulário
   async function sendForm()
   {
-    let response=await fetch('http://192.168.1.2:3000/create/attraction',{
+    let response=await fetch('http://192.168.1.2:3000/create/dangerousplace',{
       method: 'POST',
       headers: {
         Accept: 'application/json',
         'Content-Type':'application/json'
       },
       body: JSON.stringify({
-        Name: name,
         Desc: desc,
         Address: address,
         routeId: route.params?.routeId
@@ -31,7 +29,7 @@ export default function CriarAtracao({ route }) {
     });
     let json=await response.json();
     if(json != 'error'){
-      setDisplay('Atração Cadastrada com Sucesso!');
+      setDisplay('Local Cadastrado com Sucesso!');
       setTimeout(() => {
         setDisplay('');
         navigation.navigate('DetalhesRota',{routeId: route.params?.routeId,city: route.params?.city });
@@ -48,16 +46,16 @@ export default function CriarAtracao({ route }) {
 
       
         <View style={styles.cabecalho}>
-          <Text style={styles.titulo}>Criar Nova Atração</Text>
+          <Text style={styles.titulo}>Criar Novo Local a se Evitar</Text>
         </View>
 
         <Text style={{alignSelf: 'center', color: 'white'}}>{display}</Text>
 
         <View style={styles.configCampo}>
-          <Text style={styles.tituloCampo}>Nome</Text>
+          <Text style={styles.tituloCampo}>Endereço</Text>
           <TextInput
             style={styles.campo}
-            onChangeText={text => setName(text)}
+            onChangeText={text => setAddress(text)}
           />
         </View>
 
@@ -66,14 +64,6 @@ export default function CriarAtracao({ route }) {
           <TextInput
             style={styles.campo}
             onChangeText={text => setDesc(text)}
-          />
-        </View>
-
-        <View style={styles.configCampo}>
-          <Text style={styles.tituloCampo}>Endereço</Text>
-          <TextInput
-            style={styles.campo}
-            onChangeText={text => setAddress(text)}
           />
         </View>
 

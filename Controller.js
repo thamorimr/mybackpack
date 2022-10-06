@@ -11,8 +11,8 @@ const cities = models.Citie;
 const routes = models.Route;
 const attraction_routes = models.Attraction_Route;
 const Attraction = models.Attraction;
-const dangerousplace_routes = models.Dangerousplace_route;
-const dangerousplace = models.Dangerousplace;
+const dangerousplace_routes = models.DangerousPlace_Route;
+const Dangerousplace = models.DangerousPlace;
 
 app.get('/', async(req,res)=>{
     res.json({title: 'Hello World'})
@@ -88,6 +88,36 @@ app.post('/create/route', async (req,res)=>{
         updatedAt: new Date()
     });
     res.send(create);
+});
+
+app.get('/dangerousplace/:routeid', async(req,res)=>{
+    let response = await dangerousplace_routes.findAll({
+        attributes: ['dangerousplaceId'],
+        where:{routeid: req.params.routeid},
+        raw: true,
+        include: [{
+            model: Dangerousplace,
+            required: true,
+            attributes: ['Address','Desc']
+        }],
+        order: [['id', 'ASC']]
+    });
+    res.json(response)
+});
+
+app.post('/create/dangerousplace', async (req,res)=>{
+    let create = await Dangerousplace.create({
+        Desc: req.body.Desc,
+        Address: req.body.Address,
+        createdAt: new Date(), 
+        updatedAt: new Date()
+    });
+    res.send(create);
+    
+    let createAtRt = await dangerousplace_routes.create({
+        dangerousplaceId : create.id,
+        routeId: req.body.routeId
+    });
 });
 
 

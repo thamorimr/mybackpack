@@ -12,7 +12,7 @@ export default function Atracoes({ route }) {
   const navigation = useNavigation();
 
   useEffect(() => {
-    fetch('http://192.168.1.7:3000/attraction/' + route.params?.routeId)
+    fetch('http://192.168.1.2:3000/attraction/' + route.params?.routeId)
     .then((response) => response.json())
     .then((json) => {
       setData(json);

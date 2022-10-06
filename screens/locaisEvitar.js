@@ -4,26 +4,22 @@ import { TouchableOpacity } from "react-native";
 import { useNavigation } from '@react-navigation/native';
 
 
-export default function Rotas({ route }) {
+export default function LocaisEvitar({ route }) {
 
   const [data, setData] = useState([]);
   const navigation = useNavigation();
   
 
   useEffect(() => {
-    fetch('http://192.168.1.2:3000/routes/' + route.params?.citieId)
+    fetch('http://192.168.1.2:3000/dangerousplace/' + route.params?.routeId)
     .then((response) => response.json())
     .then((json) => {
       setData(json);
     });
   },[]);
 
-  const pressHandlerDet = (id) => {
-    navigation.navigate('DetalhesRota',{routeId: id, city: route.params?.city});
-  };
-
-  const pressHandlerNew = (id) => {
-    navigation.navigate('CriarRota',{citieId: id, city: route.params?.city});
+  const pressHandler = (id) => {
+    navigation.navigate('CriarLocaisEvitar',{routeId: id, city: route.params?.city});
   }
 
   function renderPost(item){
@@ -31,10 +27,10 @@ export default function Rotas({ route }) {
       <View style={styles.card}>
         <TouchableOpacity onPress={() => pressHandlerDet(item.id)}>
           <Text style={styles.title}>
-            {item.DescRoute}
+            {item['DangerousPlace.Address']}
           </Text>
           <Text style={styles.titleDistance}>
-            Distancia{'\n'}{item.Distance} KM
+            {'\n'}{item['DangerousPlace.Desc']}
           </Text>
         </TouchableOpacity>
       </View>
@@ -48,11 +44,11 @@ export default function Rotas({ route }) {
         style={styles.image}>
       <FlatList
         data={data}
-        keyExtractor={(item) => String(item.id)}
+        keyExtractor={(item) => String(item.dangerousplaceId)}
         renderItem={({item}) => renderPost(item)}
       />
 
-      <TouchableOpacity onPress={() => pressHandlerNew(route.params?.citieId)}>
+      <TouchableOpacity onPress={() => pressHandler(route.params?.routeId)}>
         <Image
           style={styles.buttonPlus}
           resizeMode="contain"

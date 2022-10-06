@@ -15,7 +15,7 @@ export default function CriarRota({ route }) {
   //Envio do formulário
   async function sendForm()
   {
-    let response=await fetch('http://192.168.1.7:3000/create/route',{
+    let response=await fetch('http://192.168.1.2:3000/create/route',{
       method: 'POST',
       headers: {
         Accept: 'application/json',
