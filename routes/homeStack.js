@@ -11,6 +11,8 @@ import CriarAtracao from '../screens/criarAtracao'
 import Hospedagens from '../screens/hospedagens'
 import LocaisEvitar from '../screens/locaisEvitar'
 import CriarLocaisEvitar from '../screens/criarLocaisEvitar'
+import Airbnb from '../screens/airbnb'
+import Couchsurfing from '../screens/couchsurfing'
 
 const Stack = createStackNavigator()
 
@@ -26,6 +28,8 @@ export default function Navigator() {
       <Stack.Screen name='Rotas' component={Rotas} />
       <Stack.Screen name='LocaisEvitar' component={LocaisEvitar} />
       <Stack.Screen name='CriarLocaisEvitar' component={CriarLocaisEvitar} />
+      <Stack.Screen name='Airbnb' component={Airbnb} />
+      <Stack.Screen name='Couchsurfing' component={Couchsurfing} />
       <Stack.Screen name='Hospedagens' component={Hospedagens} />
       <Stack.Screen name='CriarRota' component={CriarRota} />
       <Stack.Screen name='CriarAtracao' component={CriarAtracao} />
