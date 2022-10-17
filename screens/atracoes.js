@@ -23,12 +23,18 @@ export default function Atracoes({ route }) {
     navigation.navigate('CriarAtracao',{routeId: id});
   };
 
+  const pressHandler = (name) => {
+    navigation.navigate('DetalhesAtracao',{attractionName: name,city: route.params?.city});
+  };
+
 function renderPost(item){
 return(
   <View style={styles.card}>
-    <Text style={styles.title}>
-    {item['Attraction.Name']}
-    </Text>
+    <TouchableOpacity onPress={() => pressHandler(item['Attraction.Name'])}>
+      <Text style={styles.title}>
+      {item['Attraction.Name']}
+      </Text>
+    </TouchableOpacity>
   </View>
 )
 };
