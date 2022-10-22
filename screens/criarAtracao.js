@@ -16,7 +16,7 @@ export default function CriarAtracao({ route }) {
   //Envio do formulário
   async function sendForm()
   {
-    let response=await fetch('http://192.168.1.2:3000/create/attraction',{
+    let response=await fetch('http://192.168.1.6:3000/create/attraction',{
       method: 'POST',
       headers: {
         Accept: 'application/json',

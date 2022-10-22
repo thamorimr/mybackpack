@@ -16,7 +16,7 @@ export default function Home() {
 
 
   useEffect(() => {
-    fetch('http://192.168.1.2:3000/cities')
+    fetch('http://192.168.1.6:3000/cities')
     .then((response) => response.json())
     .then((json) => {
       setData(json);

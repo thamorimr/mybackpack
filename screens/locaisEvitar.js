@@ -11,21 +11,25 @@ export default function LocaisEvitar({ route }) {
   
 
   useEffect(() => {
-    fetch('http://192.168.1.2:3000/dangerousplace/' + route.params?.routeId)
+    fetch('http://192.168.1.6:3000/dangerousplace/' + route.params?.routeId)
     .then((response) => response.json())
     .then((json) => {
       setData(json);
     });
   },[]);
 
-  const pressHandler = (id) => {
+  const pressHandlerNew = (id) => {
     navigation.navigate('CriarLocaisEvitar',{routeId: id, city: route.params?.city});
+  }
+
+  const pressHandlerMap = (adresss) => {
+    navigation.navigate('DetalhesLocaisEvitar',{city: route.params?.city,address: adresss});
   }
 
   function renderPost(item){
     return(
       <View style={styles.card}>
-        <TouchableOpacity onPress={() => pressHandlerDet(item.id)}>
+        <TouchableOpacity onPress={() => pressHandlerMap(item['DangerousPlace.Address'])}>
           <Text style={styles.title}>
             {item['DangerousPlace.Address']}
           </Text>
@@ -48,7 +52,7 @@ export default function LocaisEvitar({ route }) {
         renderItem={({item}) => renderPost(item)}
       />
 
-      <TouchableOpacity onPress={() => pressHandler(route.params?.routeId)}>
+      <TouchableOpacity onPress={() => pressHandlerNew(route.params?.routeId)}>
         <Image
           style={styles.buttonPlus}
           resizeMode="contain"

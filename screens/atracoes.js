@@ -12,7 +12,7 @@ export default function Atracoes({ route }) {
   const navigation = useNavigation();
 
   useEffect(() => {
-    fetch('http://192.168.1.2:3000/attraction/' + route.params?.routeId)
+    fetch('http://192.168.1.6:3000/attraction/' + route.params?.routeId)
     .then((response) => response.json())
     .then((json) => {
       setData(json);
@@ -72,7 +72,7 @@ return(
   }else {
     return(
         <WebView
-              source={{uri: 'https://www.tripadvisor.com.br/Search?q=Santiago&searchSessionId=F3A78CDF5C913EE1575437F56915FF1E1664446199770ssid&searchNearby=false&sid=7DA5AD53B3B74A6E8C2B9C1911B7334A1664446203509&blockRedirect=true&ssrc=A&rf=1'}}
+              source={{uri: 'https://www.tripadvisor.com.br/Search?q=santiago&searchSessionId=6446360D3940D3D71079880ECE2118ED1666219780279ssid&searchNearby=false&sid=A0C6F656EC6FB5ADFC5635618C73FD381666219789038&blockRedirect=true&geo=1&ssrc=A&rf=1'}}
           />      
     )
   }

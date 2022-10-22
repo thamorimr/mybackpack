@@ -11,7 +11,7 @@ export default function Rotas({ route }) {
   
 
   useEffect(() => {
-    fetch('http://192.168.1.2:3000/routes/' + route.params?.citieId)
+    fetch('http://192.168.1.6:3000/routes/' + route.params?.citieId)
     .then((response) => response.json())
     .then((json) => {
       setData(json);
